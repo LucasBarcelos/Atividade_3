@@ -56,7 +56,7 @@ class CadastroEdicaoViewController: UIViewController {
         problema?.nome = nomeLabel.text
         problema?.endereco = enderecoLabel.text
         problema?.descricao = descricaoTextView.text
-        problema?.imagem = imageView.image
+        problema?.imagem = imageView.image?.jpegData(compressionQuality: 0.9)
         
         try? context.save()
         navigationController?.popViewController(animated: true)
@@ -89,19 +89,7 @@ extension CadastroEdicaoViewController: UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[.originalImage] as? UIImage {
-            let aspectRatio = image.size.width / image.size.height
-            let maxSize: CGFloat = 500
-            var smallSize: CGSize
-            if aspectRatio > 1 {
-                smallSize = CGSize(width: maxSize, height: maxSize/aspectRatio)
-            } else {
-                smallSize = CGSize(width: maxSize*aspectRatio, height: maxSize)
-            }
-            
-            UIGraphicsBeginImageContext(smallSize)
-            image.draw(in: CGRect(x: 0, y: 0, width: smallSize.width, height: smallSize.height))
-            self.imageView.image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
+            imageView.image = image
         }
         
         dismiss(animated: true, completion: nil)

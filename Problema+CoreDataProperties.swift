@@ -19,10 +19,6 @@ extension Problema {
     @NSManaged public var nome: String?
     @NSManaged public var endereco: String?
     @NSManaged public var descricao: String?
-    @NSManaged public var imagem: NSObject?
-
-}
-
-extension Problema : Identifiable {
+    @NSManaged public var imagem: Data?
 
 }

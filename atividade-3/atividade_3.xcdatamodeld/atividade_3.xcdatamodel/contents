@@ -3,7 +3,7 @@
     <entity name="Problema" representedClassName="Problema" syncable="YES">
         <attribute name="descricao" optional="YES" attributeType="String"/>
         <attribute name="endereco" optional="YES" attributeType="String"/>
-        <attribute name="imagem" optional="YES" attributeType="Transformable"/>
+        <attribute name="imagem" optional="YES" attributeType="Binary"/>
         <attribute name="nome" optional="YES" attributeType="String"/>
     </entity>
     <elements>
