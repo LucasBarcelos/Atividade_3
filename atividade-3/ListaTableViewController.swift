@@ -12,8 +12,6 @@ class ListaTableViewController: UITableViewController {
 
     // MARK: - Properties
     var fetchedResultsController: NSFetchedResultsController<Problema>!
-    var currentDateTime = Date()
-    let formatter = DateFormatter()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -36,7 +34,7 @@ class ListaTableViewController: UITableViewController {
         let item = fetchedResultsController.object(at: indexPath)
         
         cell.textLabel?.text = item.nome
-        cell.detailTextLabel?.text = configHoraData()
+        cell.detailTextLabel?.text = item.data
         
         return cell
     }
@@ -46,6 +44,14 @@ class ListaTableViewController: UITableViewController {
             let problema = fetchedResultsController.object(at: indexPath)
             context.delete(problema)
             try? context.save()
+            
+            let alert = UIAlertController(title: "Atenção", message: "Exclusão realizada com sucesso!", preferredStyle: .alert)
+            
+            let okButton = UIAlertAction(title: "Ok", style: .default) { UIAlertAction in
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            alert.addAction(okButton)
+            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -56,20 +62,24 @@ class ListaTableViewController: UITableViewController {
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
         fetchedResultsController.delegate = self
         
         try? fetchedResultsController.performFetch()
     }
-    
-    func configHoraData() -> String {
-        formatter.timeStyle = .short
-        formatter.dateStyle = .short
-        return formatter.string(from: currentDateTime)
-    }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "cadastro" {
+            if let vc = segue.destination as? CadastroEdicaoViewController {
+                vc.edicao = false
+            }
+        } else if segue.identifier == "exibicao" {
+            if let vc = segue.destination as? ExibicaoViewController,
+               let index = tableView.indexPathForSelectedRow {
+                vc.problema = fetchedResultsController.object(at: index)
+            }
+        }
+        
     }
 }
 

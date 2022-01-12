@@ -19,11 +19,16 @@ class CadastroEdicaoViewController: UIViewController {
     
     // MARK: - Properties
     var problema: Problema?
+    var edicao: Bool?
+    var currentDateTime = Date()
+    let formatter = DateFormatter()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        configLayout(edicao ?? false)
+        
     }
     
     // MARK: - Methods
@@ -32,6 +37,50 @@ class CadastroEdicaoViewController: UIViewController {
         imagePicker.sourceType = sourceType
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func configLayout(_ edicao: Bool) {
+        if edicao {
+            if let nome = problema?.nome,
+                let endereco = problema?.endereco,
+                let descricao = problema?.descricao,
+                let imagem = problema?.imagem {
+                nomeLabel.text = nome
+                enderecoLabel.text = endereco
+                descricaoTextView.text = descricao
+                imageView.image = UIImage(data: imagem)
+                self.navigationItem.title = "Edição"
+            }
+        } else {
+            self.navigationItem.title = "Cadastro"
+        }
+    }
+    
+    func alertDismiss() {
+        guard let edicao = self.edicao else { return }
+        if edicao {
+            let alert = UIAlertController(title: "Edição", message: "Sua edição foi realizada com sucesso!", preferredStyle: .alert)
+            
+            let okButton = UIAlertAction(title: "Ok", style: .default) { UIAlertAction in
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            alert.addAction(okButton)
+            present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Cadastro", message: "Seu cadastro foi realizado com sucesso!", preferredStyle: .alert)
+            
+            let okButton = UIAlertAction(title: "Ok", style: .default) { UIAlertAction in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(okButton)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func configHoraData() -> String {
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        return formatter.string(from: currentDateTime)
     }
     
     // MARK: - Actions
@@ -50,6 +99,7 @@ class CadastroEdicaoViewController: UIViewController {
     }
     
     @IBAction func salvarButton(_ sender: UIButton) {
+        
         if problema == nil {
             problema = Problema(context: context)
         }
@@ -57,9 +107,10 @@ class CadastroEdicaoViewController: UIViewController {
         problema?.endereco = enderecoLabel.text
         problema?.descricao = descricaoTextView.text
         problema?.imagem = imageView.image?.jpegData(compressionQuality: 0.9)
+        problema?.data = configHoraData()
         
         try? context.save()
-        navigationController?.popViewController(animated: true)
+        alertDismiss()
     }
     
     @IBAction func carregarImagem(_ sender: UIButton) {
@@ -94,6 +145,17 @@ extension CadastroEdicaoViewController: UIImagePickerControllerDelegate, UINavig
         
         dismiss(animated: true, completion: nil)
         
+    }
+}
+
+extension CadastroEdicaoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 

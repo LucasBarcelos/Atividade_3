@@ -188,36 +188,33 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="iB9-sD-0v7">
                                 <rect key="frame" x="20" y="128" width="374" height="250"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgh-yg-mRh">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21.666666666666668"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCo-uW-cpy">
-                                        <rect key="frame" x="0.0" y="35.666666666666657" width="374" height="21.666666666666671"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9sO-14-pci">
-                                        <rect key="frame" x="0.0" y="71.333333333333357" width="374" height="178.66666666666663"/>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lah-WQ-w5n">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="alert" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Endereço:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pQC-Ow-blv">
+                                        <rect key="frame" x="0.0" y="48" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" textContentType="street-address"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Descrição:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9sO-14-pci">
+                                        <rect key="frame" x="0.0" y="96" width="374" height="154"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="pQC-Ow-blv" firstAttribute="leading" secondItem="iB9-sD-0v7" secondAttribute="leading" id="2wb-5w-f5q"/>
                                     <constraint firstAttribute="bottom" secondItem="9sO-14-pci" secondAttribute="bottom" id="6jW-0I-Bb5"/>
+                                    <constraint firstAttribute="trailing" secondItem="pQC-Ow-blv" secondAttribute="trailing" id="A0n-1Z-uMd"/>
                                     <constraint firstAttribute="trailing" secondItem="9sO-14-pci" secondAttribute="trailing" id="Fj0-qF-AMT"/>
                                     <constraint firstAttribute="height" constant="250" id="I8R-YI-vSX"/>
-                                    <constraint firstItem="pgh-yg-mRh" firstAttribute="leading" secondItem="iB9-sD-0v7" secondAttribute="leading" id="PwO-ex-LCF"/>
-                                    <constraint firstItem="RCo-uW-cpy" firstAttribute="leading" secondItem="iB9-sD-0v7" secondAttribute="leading" id="RIf-kc-mIX"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lah-WQ-w5n" secondAttribute="trailing" id="KaS-ie-Wzh"/>
                                     <constraint firstItem="9sO-14-pci" firstAttribute="leading" secondItem="iB9-sD-0v7" secondAttribute="leading" id="bNz-fS-rq4"/>
-                                    <constraint firstAttribute="trailing" secondItem="RCo-uW-cpy" secondAttribute="trailing" id="xkq-Gg-cC5"/>
-                                    <constraint firstAttribute="trailing" secondItem="pgh-yg-mRh" secondAttribute="trailing" id="ySX-4W-vmc"/>
+                                    <constraint firstItem="Lah-WQ-w5n" firstAttribute="leading" secondItem="iB9-sD-0v7" secondAttribute="leading" id="zUh-9F-FPr"/>
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L1k-cn-flz">
@@ -247,8 +244,8 @@
                     <connections>
                         <outlet property="descricaoTextView" destination="9sO-14-pci" id="uGN-JK-C2u"/>
                         <outlet property="imageView" destination="L1k-cn-flz" id="Vkr-Qd-Dzw"/>
-                        <outlet property="localizacaoLabel" destination="RCo-uW-cpy" id="iPM-Yj-qUy"/>
-                        <outlet property="nomeLabel" destination="pgh-yg-mRh" id="4l5-dd-Q8Z"/>
+                        <outlet property="localizacaoLabel" destination="pQC-Ow-blv" id="sKW-Ww-l60"/>
+                        <outlet property="nomeLabel" destination="Lah-WQ-w5n" id="0hb-Cb-H5f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFA-e5-Tym" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -279,7 +276,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2jj-zG-vnR"/>
+        <segue reference="6Lq-dr-1dz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemGreenColor"/>
     <resources>

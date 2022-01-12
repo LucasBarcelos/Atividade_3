@@ -20,5 +20,5 @@ extension Problema {
     @NSManaged public var endereco: String?
     @NSManaged public var descricao: String?
     @NSManaged public var imagem: Data?
-
+    @NSManaged public var data: String?
 }
